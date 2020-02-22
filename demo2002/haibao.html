@@ -13,7 +13,6 @@
  <body>
 
 <div class="container">
-
   <div class="row">
     <div class="column">
       
@@ -21,28 +20,65 @@
   <div class="entry-content">
 <p>通过添加数组，合并数组的方式快速给主题增加一个后台选项</p>
 <p><img alt="通过合并数组快速生成主题设置选项-极客公园" src="https://yunluo.oss-cn-shanghai.aliyuncs.com/wp-content/uploads/2017111206320692.png!water.jpg" alt="" class="aligncenter size-full wp-image-5382" /></p>
-<h2>前言</h2>
 <p>
 最近发现很多开发主题的都喜欢写插件了，而且是那种工具类插件依赖性插件，有的主题可能必须安装某种插件，如果不安装这种插件的话可能就无法运行，可能有的用户对这种方式比较反感，但对开发者来说是一种非常爽的事情，毕竟写一次代码所有主题都是使用的话，将会极大的提高开发效率，今天抛开依赖这个问题，我们只是单单讨论里面的技术问题。</p>
-<h2>成功效果</h2>
-<p><img alt="通过合并数组快速生成主题设置选项-极客公园" src="https://yunluo.oss-cn-shanghai.aliyuncs.com/wp-content/uploads/8a31c28d3c611f877e6075af1bc87e0c.png!water.jpg" class="aligncenter size-full" /></p>
 </div>
 
-    </div>
+
+<a id="hb_click" data-fancybox="fancybox_hb" data-src="#fancybox_hb" href="javascript:;" class="button primary">生成海报</a>
+
+    </div><!-- end column-->
   </div>
 
 </div>
 
+<div id="fancybox_hb" class="container" style="max-width:500px; display: none; width: 100%;">
+<div class="row">
+  <div class="column column-80">
+  <div class="row hb_title"></div>
+  <div class="row hb_expect"></div>
+  <div class="row hb_imgs"></div>
+  </div>
+
+  <div class="column column-20">
+  <div class="row">分享到</div>
+  <div class="row">分享到</div>
+  <div class="row"><a id="canves_click" href="javascript:;" onclick="takeScreenshot()">点击下载</a></div>
+  </div>
+
+</div>
+</div>
 
 
-<a class="button" href="#">Default Button</a>
   <script>
-	var content = $('.entry-content').text().replace(/<[^>]+>/g,"").replace(/[\r\n]/g,""),title = $('.entry-title-site-hero').text(),expect = content.substr(0,80);
+  var content = $('.entry-content').text().replace(/<[^>]+>/g,"").replace(/[\r\n]/g,""),title = $('.entry-title-site-hero').text(),expect = content.substr(0,80);
 
-  var imgs = document.body.getElementsByTagName("img")[1].src;
-  /**alert(expect);*//
+  var imgs = document.body.getElementsByTagName("img")[0].src;
+  
+var  dataURL;
+$("#hb_click").click(function(){
+if('' !== $(".hb_title").text()){return;}
+  $(".hb_title").append(title);
+  $(".hb_expect").append(expect);
+  $(".hb_imgs").append('<img src="'+imgs+'">');
+});
 
+function takeScreenshot() {
+  console.log('test');
+    html2canvas(document.getElementById('fancybox_hb'), {
+        onrendered: function(canvas) {
+            document.body.appendChild(canvas);
+	dataURL = canvas.toDataURL("image/png");
+    console.log(dataURL);//dataURL是合成图片的地址
+        },
+      width: 300,
+      height: 300
+    ,useCORS:true,logging:true});
+
+}
   </script>
+  
   <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.1/dist/jquery.fancybox.min.js'></script>
+  <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js'></script>
  </body>
 </html>
