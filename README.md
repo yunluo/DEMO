@@ -1,4 +1,4 @@
-![logo](https://yunluo.oss-cn-shanghai.aliyuncs.com/wp-content/plugins/gdk/assets/img/logo.png);
+![logo](https://yunluo.oss-cn-shanghai.aliyuncs.com/wp-content/plugins/gdk/assets/img/logo.png)
 ##这是什么?
 
 这个是云落的极客公园网站的前端代码演示网站
